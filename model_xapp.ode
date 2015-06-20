@@ -1,0 +1,21 @@
+# parameters
+parameter alpha=3.6,kappa=3.6,beta=3,Pmax=1.8e5,delta=6e-6,deltaP=1.512
+parameter etaS=24,K=1e9,gamma=2.4e4,lambda=1e-5,rho=1e-6,omega=0.7,c=0.1,
+# model
+dS/dt=etaS*S*(1-(S+R)/K)-muS(A)*S-(gamma+zeta(As))*P*S-lambda*S*R+rho*R-omega*S
+dA/dt=-alpha*A
+dAs/dt=-kappa*As
+dP/dt=beta*(S+R)*(1-P/Pmax)-delta*(S+R)*P-deltaP*P
+dR/dt=(1-c)*etaS*R*(1-(S+R)/K)-muR(A)*R-(gamma+zeta(As))*P*R-lambda*S*R+rho*R-omega*R
+# where
+muS(y)=36*y/(y+0.25)
+muR(y)=26.4*y/(y+5)
+zeta(y)=0.035*y/(5+y)
+# ICs
+A(0)=0
+As(0)=0
+P(0)=0
+S(0)=6000
+R(0)=20
+
+done
